@@ -1,0 +1,18 @@
+# Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
+fos_rest:
+    routing_loader: true
+    param_fetcher_listener: true
+    view:
+        view_response_listener: true
+    format_listener:
+        rules:
+            - { path: ^/, prefer_extension: true, fallback_format: json, priorities: [ json ] }
+    exception:
+      enabled: true
+      #exception_controller: 'fos_rest.exception.controller:showAction'
+      codes:
+        Doctrine\ORM\EntityNotFoundException: 404
+        Symfony\Component\HttpKernel\Exception\BadRequestHttpException:  400
+        Symfony\Component\Routing\Exception\ResourceNotFoundException: 404
+    serializer:
+        groups: [Default]
